@@ -164,7 +164,6 @@ class Lolservice {
      */
     public function getSummonerRankedStats($region, $summonerId, $season = 'SEASON4') {
         $response = $this->sendRequest($region, 'v1.3', 'stats', false, 'by-summoner/'.$summonerId, 'ranked', 'season='.$season);
-        var_dump($response);
         return $response->champions;
     }
 
