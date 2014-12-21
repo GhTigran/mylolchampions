@@ -26,10 +26,10 @@ class Contact extends MY_Controller {
             $this->email->send();
 
 
-            $alerts[] = array(
+            $alerts[] = [
                 'status' => 'success',
                 'message' => 'Thank you for feedback. We appreciate it a lot.'
-            );
+            ];
         }
 
         if(!empty($alerts) && count($alerts)) {
@@ -38,9 +38,9 @@ class Contact extends MY_Controller {
 
         $pageData['page'] = 'contact';
         $pageData['metaTitle'] = 'Contact Us';
-        $pageData['jsFiles'] = array(
+        $pageData['jsFiles'] = [
             'jquery.validate.js'
-        );
+        ];
 
         $this->load->view('template', $pageData);
     }
