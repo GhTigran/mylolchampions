@@ -1,0 +1,510 @@
+body {
+    margin-top: 30px;
+    background: #eee;
+}
+
+img.desaturate {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.modal-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#header {
+    padding: 10px;
+    box-shadow: 0 0 2px #000000;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #444444;
+}
+
+#logo img {
+    width: 100%;
+}
+
+#main {
+    position: relative;
+}
+
+#summoner-search .row {
+    margin-left: -2px;
+    margin-right: -2px;
+}
+
+#summoner-search .row>div {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#beta-ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+
+#nav {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#footer {
+    margin-top: 10px;
+}
+
+blockquote {
+    font-style: italic;
+    background: #fff;
+    border-left: 10px solid #222;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    border-radius: 10px;
+}
+blockquote:before {
+    color: #222;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+blockquote p {
+    display: inline;
+}
+
+.loader {
+    display: none;
+}
+
+#profile-header {
+    margin: 10px 0;
+    border-radius: 10px;
+    background: #ddd;
+}
+
+#profile-header div img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px 0 0 10px;
+}
+
+#profile-header .media-heading {
+    margin: 5px 0;
+}
+
+#profile-header div#badge {
+    position: relative;
+}
+
+#badge #league-rank {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    bottom: 0;
+    right: 15px;
+    font-family: Verdana, serif;
+}
+
+#group-list .panel-heading {
+    position: relative;
+}
+
+#group-list .panel-heading .btn-group {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+
+.champ-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid #222;
+}
+
+#free-champs .champ-icon {
+    width: 50px;
+    height: 50px;
+}
+
+#free-champs li {
+    margin-bottom: 5px;
+}
+
+#all-champions {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+#all-champions .row {
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+#all-champions .row div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#all-champions .row div img {
+    border: 1px solid #222;
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+}
+
+#all-champions .row div:hover img {
+    border: 1px solid #66afe9;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    filter: grayscale(0%);
+}
+
+#all-champions .row div input[type="checkbox"] {
+    position: absolute;
+    top: 3px;
+    right: 18px;
+}
+
+#right-side-ads {
+    position: absolute;
+    right: -150px;
+    top: 0;
+}
+
+#horizontal-ads {
+    margin: 0 auto;
+}
+
+#summoners-container .table tr td:last-child {
+    width: 130px;
+    text-align: right;
+}
+
+/*
+
+#page {
+    width: 980px;
+    margin: 30px auto 0;
+}
+
+h1, h2, h3 {
+    color: #eee;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.uk-form textarea {
+    width: 500px;
+    height: 100px !important;
+}
+
+.uk-panel-header .uk-panel-title {
+    color: #eee;
+}
+
+.uk-panel-box {
+    background: #444;
+    color: #ddd;
+}
+
+.uk-modal {
+    background: rgba(100,100,100,.6) !important;
+}
+
+.uk-modal-dialog {
+    background: #222;
+}
+
+blockquote {
+    font-style: italic;
+    background: #111;
+    border-left: 10px solid #000;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+    color: #fff;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+blockquote p {
+    display: inline;
+}
+
+label {
+    display: block;
+    float: left;
+    width: 130px;
+}
+
+img.desaturate {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.cb {
+    clear: both;
+}
+
+#header {
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #000000;
+    box-shadow: 0 0 2px #000000;
+    background: #335;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#header select {
+    width: 100px;
+}
+
+#logo {
+    float: left;
+    margin-right: 20px;
+}
+
+#summoner-search {
+    margin-top: 15px;
+    float: left;
+}
+
+#profile-links {
+    font-size: 12px;
+    border: 1px solid #222;
+    padding: 5px;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(top,#888,#555);
+    background-image: linear-gradient(to bottom,#888,#555);
+    float: right;
+}
+
+#profile-links label {
+    padding-top: 4px;
+}
+
+#main-menu li {
+    display: block;
+    float: left;
+}
+
+#profile-header {
+    height: 60px;
+    padding: 20px;
+    border: 1px solid #000000;
+    box-shadow: 0 0 2px #000000;
+    background: dodgerblue;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 10px;
+}
+
+#profile-header p {
+    margin: 0;
+}
+
+#main-bar {
+    float: left;
+    width: 760px;
+}
+
+#left-bar {
+    float: left;
+    margin-right: 20px;
+    width: 200px;
+}
+
+#profile-header div {
+    height: 60px;
+    float: left;
+    display: block;
+    color: #ffffff;
+    margin-right: 20px;
+}
+
+#profile-header div:last-child {
+    margin-right: 0;
+}
+
+#profile-header div img {
+    width: 60px;
+    height: 60px;
+}
+
+#profile-header div#badge {
+    float: right;
+    position: relative;
+}
+
+#badge #league-rank {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    bottom: 0;
+    right: 0;
+    font-family: Verdana, serif;
+}
+
+
+
+.info-bar {
+    position: relative;
+    height: 18px;
+    width: 105px;
+    margin: 3px 0;
+    float: right;
+}
+
+.info-bar img {
+    width: 100%;
+    height: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.info-bar .bar {
+    background: transparent url(../img/info-sprite.png) repeat-x 0 -115px;
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    right: 4px;
+    height: 13px;
+    z-index: 1;
+}
+
+.info-bar .bar .fill {
+    background: transparent url(../img/info-sprite.png) repeat-x 0 0;
+    height: 13px;
+}
+
+.info-defense .bar .fill {
+    background-position: 0 0;
+}
+
+.info-attack .bar .fill {
+    background-position: 0 -13px;
+}
+
+.info-magic .bar .fill {
+    background-position: 0 -26px;
+}
+
+.info-difficulty .bar .fill {
+    background-position: 0 -52px;
+}
+
+#free-champs .champ-icon, #champions-list .champ-icon {
+    width: 50px;
+    height: 50px;
+}
+
+#free-champs label {
+    float: left;
+}
+
+#add-group-button {
+    float: right;
+    margin: 10px;
+}
+
+.ui-accordion-header {
+    font-size: 16px;
+}
+
+.uk-button-primary, .uk-button-danger {
+    color: #fff !important;
+    font-weight: normal;
+}
+
+.uk-button-small {
+    min-height: 25px;
+    padding: 0 10px;
+    line-height: 23px;
+    font-size: 12px;
+}
+
+.signature {
+    float: right;
+}
+
+#summoners {
+    margin-top: 15px;
+}
+
+#summoners .uk-form-row {
+    margin-top: 15px;
+}
+
+#summoners .uk-icon-spinner {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+#summoners .remove-summoner {
+    margin-left: 10px;
+}
+
+#footer-links {
+    background: #444;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#footer-links li {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+#footer-links li a {
+    color: #ccc;
+    text-decoration: none;
+    font-style: normal;
+}
+
+#footer-links li a:hover {
+    color: #2e7db2;
+}
+
+#donations {
+    margin: 10px auto;
+    text-align: center;
+}
+
+#edit-group-dialog .uk-modal-dialog {
+    width: 850px;
+}
+
+
+#edit-group-dialog ul {
+    overflow: auto;
+    padding-left: 0;
+    height: 600px;
+}
+
+#search-champ-form {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,57 @@
+#nav {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: url(img/main-bg.png) repeat-x;
+    float: left;
+    height:41px;
+    padding-left: 30px;
+}
+
+#nav li {
+    list-style: none;
+    margin: 0;
+    padding: 0 5px 0 0;
+    display: block;
+    float: left;
+    background: url(img/main-delimiter.png) 98% 4px no-repeat;
+}
+
+#nav li.last { background: none; }
+
+#nav li a {
+    color: #e5e5e5;
+    z-index: 2;
+    position: relative;
+    cursor: pointer;
+    display: block;
+    float: left;
+    text-decoration: none;
+    padding: 0 5px;
+    width: 100%;
+    font: normal 14px Trebuchet MS;
+    height: 41px;
+    line-height: 41px;
+}
+
+#nav li a:hover {
+    color: #fff;
+}
+
+#nav-highlighter {
+    background: url(img/lava.png) no-repeat right -44px !important;
+    background-image: url(img/lava.gif);
+    width: 13px;
+    height: 44px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    margin: -1px 0 0 -5px !important;
+}
+
+#nav-highlighter .left {
+    background: url(img/lava.png) no-repeat top left !important;
+    background-image: url(img/lava.gif);
+    height: 44px;
+    margin-right: 8px;
+}
