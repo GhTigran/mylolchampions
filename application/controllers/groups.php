@@ -81,10 +81,10 @@ class Groups extends MY_Controller {
         );
         $this->Groups_model->deleteGroup($data);
 
-        $alerts[] = [
+        $alerts[] = array(
             'status' => 'success',
             'message' => 'Group has been deleted.'
-        ];
+        );
 
         $this->session->set_userdata('alerts', $alerts);
     }

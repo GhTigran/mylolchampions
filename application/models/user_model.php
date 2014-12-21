@@ -3,7 +3,7 @@
 class User_model extends CI_Model {
 
     public function getUser($filter) {
-        $where = [];
+        $where = array();
         if(!empty($filter['id'])) {
             $where[] = '`uid` = '.$filter['id'];
         }

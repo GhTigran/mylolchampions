@@ -13,9 +13,9 @@ class User extends MY_Controller {
 
         $pageData['page'] = 'user/profile';
         $pageData['uid'] = $this->session->userdata('uid');
-        $pageData['jsFiles'] = [
+        $pageData['jsFiles'] = array(
             'user/profile.js'
-        ];
+        );
         $pageData['metaTitle'] = $this->session->userdata('username');
         $this->load->view('template', $pageData);
     }
@@ -27,28 +27,28 @@ class User extends MY_Controller {
 
         if($this->input->post('login')) {
             $this->load->model('User_model');
-            $user = $this->User_model->getUser([
+            $user = $this->User_model->getUser(array(
                 'username' => $this->input->post('username', true)
-            ]);
+            ));
             if($user !== false) {
                 $pageData['username'] = $user->username;
                 if($user->password == md5($this->input->post('pass', true))) {
                     if($user->active) {
-                        $data = [
+                        $data = array(
                             'loggedIn' => 1,
                             'uid' => $user->uid,
                             'username' => $user->username
-                        ];
+                        );
                         $this->session->set_userdata($data);
                         if($this->input->post('saveUser')) {
                             setcookie("savedUser", $user->uid, time()+604800, '/');
                         }
                         redirect(base_url().'user/profile/', 'refresh');
                     } else {
-                        $pageData['jsFiles'] = [
+                        $pageData['jsFiles'] = array(
                             'user/login.js'
-                        ];
-                        $alerts[] = [
+                        );
+                        $alerts[] = array(
                             'status' => 'danger',
                             'message' => 'Your account is not active yet.
                             In order to activate it please follow the verification link in the verification email we sent to you. <br />
@@ -56,19 +56,19 @@ class User extends MY_Controller {
                             <button type="button" class="btn btn-primary btn-sm" id="resend-verification">
                                 Resend verification email
                             </button>'
-                        ];
+                        );
                     }
                 } else {
-                    $alerts[] = [
+                    $alerts[] = array(
                         'status' => 'danger',
                         'message' => 'Wrong password.'
-                    ];
+                    );
                 }
             } else {
-                $alerts[] = [
+                $alerts[] = array(
                     'status' => 'danger',
                     'message' => 'There is no user with such username.'
-                ];
+                );
             }
         }
 
@@ -98,18 +98,18 @@ class User extends MY_Controller {
             $this->load->model('User_model');
             $this->load->helper('string');
             $verificationKey = random_string('alnum', 15);
-            $data = [
+            $data = array(
                 'username' => $this->input->post('username', true),
                 'password' => md5($this->input->post('pass', true)),
                 'email' => $this->input->post('email', true),
                 'activation_key' => $verificationKey
-            ];
+            );
 
             $this->User_model->addUser($data);
 
-            $mailConfig = [
+            $mailConfig = array(
                 'mailtype' => 'html'
-            ];
+            );
 
             $code = sha1($data['username'].$data['activation_key']);
 
@@ -140,24 +140,24 @@ EOT;
 
             $this->email->send();
 
-            $alerts[] = [
+            $alerts[] = array(
                 'status' => 'success',
                 'message' => 'Congratulations, you have successfully registered.'
-            ];
+            );
 
-            $alerts[] = [
+            $alerts[] = array(
                 'status' => 'warning',
                 'message' => 'We have sent you an email with verification link. Please make sure to verify your email before you attempt to login.'
-            ];
+            );
 
             $this->session->set_userdata('alerts', $alerts);
 
             redirect(base_url('user/login'), 'refresh');
         }
 
-        $pageData['jsFiles'] = [
+        $pageData['jsFiles'] = array(
             'user/reg.js'
-        ];
+        );
         $pageData['page'] = 'user/registration';
         $pageData['metaTitle'] = 'Registration';
         $this->load->view('template', $pageData);
@@ -168,10 +168,10 @@ EOT;
         $hashCode = $this->input->get('c', true);
 
         if($hashCode && $this->User_model->verifyUser($hashCode)) {
-            $alerts[] = [
+            $alerts[] = array(
                 'status' => 'success',
                 'message' => 'Your email has been successfully verified.'
-            ];
+            );
             $this->session->set_userdata('alerts', $alerts);
             redirect(base_url('user/login'), 'refresh');
         } else {
@@ -189,14 +189,14 @@ EOT;
             echo 0; die;
         }
 
-        $user = $this->User_model->getUser([
+        $user = $this->User_model->getUser(array(
             'username' => $username
-        ]);
+        ));
 
         if($user) {
-            $mailConfig = [
+            $mailConfig = array(
                 'mailtype' => 'html'
-            ];
+            );
 
             $code = sha1($user->username.$user->activationKey);
 
@@ -254,12 +254,12 @@ EOT;
 
             $summoner->verificationKey = random_string('alnum', 15);
 
-            $data = [
+            $data = array(
                 'uid' => $uid,
                 'sid' => $summoner->sid,
                 'region' => $region,
                 'verification_key' => $summoner->verificationKey
-            ];
+            );
             $this->load->model('User_model');
             $this->User_model->addUserSummoner($data);
 

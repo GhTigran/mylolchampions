@@ -37,11 +37,11 @@ class Lolservice {
 
         $apiUrl = str_replace('prod', $region, $this->apiUrl);
 
-        $requestQuery = implode('/', [
+        $requestQuery = implode('/', array(
             $apiUrl.($is_static?'static-data/':'').$region,
             $apiVersion,
             $category
-        ]);
+        ));
 
         if($filter) {
             $requestQuery .= '/'.$filter;

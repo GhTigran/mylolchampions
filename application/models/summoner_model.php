@@ -147,7 +147,7 @@ class Summoner_model extends CI_Model {
         $logData = $this->Log_model->getLog("summoner_stats", $region, $sid);
 
         if($logData === false || (time() - $logData->update_time >= self::STATS_UPDATE_FREQUENCE)) {
-            $rankedStats = [];
+            $rankedStats = array();
             $tempStats = $this->lolservice->getSummonerRankedStats($region, $sid);
             foreach($tempStats as $champion) {
                 if(empty($champion->id)) {
@@ -172,7 +172,7 @@ class Summoner_model extends CI_Model {
         }
         $query = $this->db->query('SELECT * FROM `summoner_stats` WHERE `region` = "' . $region . '" AND `sid` = ' . $sid);
         $rankedStats = $query->result();
-        $return = [];
+        $return = array();
         foreach($rankedStats as $stats) {
             $return[$stats->chid] = $stats;
         }
@@ -181,7 +181,7 @@ class Summoner_model extends CI_Model {
 
     private function saveRankedStats($region, $sid, $rankedStats) {
         $query = $this->db->query('SELECT `chid` FROM `summoner_stats` WHERE `region` = "' . $region . '" AND `sid` = ' . $sid);
-        $chids = [];
+        $chids = array();
         if($query->num_rows() > 0)
         {
             foreach($query->result() as $row) {

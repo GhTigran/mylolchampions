@@ -14,7 +14,7 @@ class Champions_model extends CI_Model {
         $championsData = $this->lolservice->getChampions();
         $this->db->query('TRUNCATE TABLE `champions`');
         $query = 'INSERT INTO `champions` (`chid`, `name`, `attack`, `defense`, `magic`, `difficulty`) VALUES' ."\n";
-        $records = [];
+        $records = array();
         foreach($championsData as $champion) {
             $records[] = '('. $champion->id .', "'. $champion->name .'", '
                 . $champion->info->attack .', '. $champion->info->defense .', '. $champion->info->magic . ','

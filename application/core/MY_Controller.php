@@ -6,15 +6,15 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         if(!empty($_COOKIE['savedUser']) && !($this->session->userdata('loggedIn'))) {
             $this->load->model('User_model');
-            $user = $this->User_model->getUser([
+            $user = $this->User_model->getUser(array(
                 'id' => $this->input->cookie('savedUser')
-            ]);
+            ));
             if($user !== false) {
-                $data = [
+                $data = array(
                     'logged_in' => 1,
                     'uid' => $user->uid,
                     'username' => $user->username
-                ];
+                );
                 $this->session->set_userdata($data);
                 setcookie('saved_user', $user->uid, time()+604800, '/');
             }

@@ -4,8 +4,8 @@ class Groups_model extends CI_Model {
 
     public function getChampions($data) {
         $select = 'ch.*';
-        $joins = [];
-        $where = [];
+        $joins = array();
+        $where = array();
 
         if(!empty($data['champ_name'])) {
             $where[] = 'ch.name LIKE "%'.$this->db->escape_like_str($data['champ_name']).'%"';

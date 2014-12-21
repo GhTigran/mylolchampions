@@ -7,7 +7,7 @@ class Summoner extends MY_Controller {
 
         $this->config->load('site_configs');
 
-        $pageData = [];
+        $pageData = array();
 
         $uid = $this->session->userdata('uid');
 
@@ -58,29 +58,29 @@ class Summoner extends MY_Controller {
             }
         }
 
-        $pageData['cssFiles'] = [
+        $pageData['cssFiles'] = array(
             'tablesorter/style.css'
-        ];
+        );
 
-        $pageData['jsFiles'] = [
+        $pageData['jsFiles'] = array(
             'jquery.tablesorter.min.js',
             'summoner.js'
-        ];
+        );
 
-        $pageData['arabicNumbers'] = [
+        $pageData['arabicNumbers'] = array(
             'I' => 1,
             'II' => 2,
             'III' => 3,
             'IV' => 4,
             'V' => 5
-        ];
+        );
 
-        $pageData['champRankTypes'] = [
+        $pageData['champRankTypes'] = array(
             'defense',
             'attack',
             'magic',
             'difficulty'
-        ];
+        );
         $pageData['page'] = 'summoner';
         $pageData['metaTitle'] = $sName . ' - ' . strtoupper($region);
         $pageData['champions'] = $this->Champions_model->getChampions();
