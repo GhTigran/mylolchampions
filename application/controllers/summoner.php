@@ -27,8 +27,8 @@ class Summoner extends MY_Controller {
             $externalIcon = $this->config->item('external_profile_icon_path') .
                 $summoner->profileIconId . $this->config->item('icon_img_ext');
             if(!file_exists($localIcon)) {
-                $temp_headers = get_headers($externalIcon);
-                if(strpos($temp_headers[0], '200')) {
+                $tempHeaders = get_headers($externalIcon);
+                if(strpos($tempHeaders[0], '200')) {
                     $imgContent = file_get_contents($externalIcon);
                     file_put_contents($localIcon, $imgContent);
                 } else {
@@ -37,7 +37,7 @@ class Summoner extends MY_Controller {
             }
 
             $ownsSummoner = false;
-            if($this->session->userdata('logged_in')) {
+            if($this->session->userdata('loggedIn')) {
                 $this->load->model('User_model');
                 $userSummoners = $this->User_model->getUserSummoners($uid);
                 foreach($userSummoners as $userSummoner) {
@@ -103,8 +103,8 @@ class Summoner extends MY_Controller {
             $externalIcon = $this->config->item('external_profile_icon_path') .
                 $summoner->profileIconId . $this->config->item('icon_img_ext');
             if(!file_exists($localIcon)) {
-                $temp_headers = get_headers($externalIcon);
-                if(strpos($temp_headers[0], '200')) {
+                $tempHeaders = get_headers($externalIcon);
+                if(strpos($tempHeaders[0], '200')) {
                     $imgContent = file_get_contents($externalIcon);
                     file_put_contents($localIcon, $imgContent);
                 } else {

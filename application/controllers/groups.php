@@ -19,7 +19,7 @@ class Groups extends MY_Controller {
             'limit' => $this->input->get('champ_limit', true)
         );
 
-        $pageData['group_code'] = 'search';
+        $pageData['groupCode'] = 'search';
         $pageData['champions'] = $this->Groups_model->getChampions($data);
         $this->load->view('group_content', $pageData);
     }

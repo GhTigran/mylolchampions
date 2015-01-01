@@ -69,7 +69,7 @@ class Summoner_model extends CI_Model {
 
     public function getLeagueData($region, $sid) {
         $logData = $this->Log_model->getLog("league_data", $region, $sid);
-        $league_data = new stdClass();
+        $leagueData = new stdClass();
 
         if($logData === false || (time() - $logData->update_time >= self::SUMMONER_LEAGUE_DATA_UPDATE_FREQUENCE)) {
             $tempLeagueDatas = $this->lolservice->getLeagueData($region, $sid);
@@ -77,25 +77,25 @@ class Summoner_model extends CI_Model {
                 if($tempLeagueData[0]->queue === 'RANKED_SOLO_5x5') {
                     foreach($tempLeagueData[0]->entries as $entry) {
                         if($entry->playerOrTeamId == $sid) {
-                            $player_league_data = $entry;
-                            $player_league_data->tier = $tempLeagueData[0]->tier;
+                            $playerLeagueData = $entry;
+                            $playerLeagueData->tier = $tempLeagueData[0]->tier;
                         }
                     }
                 }
             }
-            if(!empty($player_league_data)) {
-                $league_data->tier = ucwords(strtolower($player_league_data->tier));
-                $league_data->rank = $player_league_data->division;
-                $league_data->leaguePoints = $player_league_data->leaguePoints;
-                $league_data->wins = $player_league_data->wins;
+            if(!empty($playerLeagueData)) {
+                $leagueData->tier = ucwords(strtolower($playerLeagueData->tier));
+                $leagueData->rank = $playerLeagueData->division;
+                $leagueData->leaguePoints = $playerLeagueData->leaguePoints;
+                $leagueData->wins = $playerLeagueData->wins;
                 //ToDo Grab losses as well, if they provide it
-                //$league_data->losses = $entry->losses;
-                $league_data->isHotStreak = ($player_league_data->isHotStreak?1:0);
-                $league_data->isVeteran = ($player_league_data->isVeteran?1:0);
-                $league_data->isFreshBlood = ($player_league_data->isFreshBlood?1:0);
-                $league_data->isInactive = ($player_league_data->isInactive?1:0);
-                $this->saveLeagueData($league_data, $region, $sid);
-                return $league_data;
+                //$leagueData->losses = $entry->losses;
+                $leagueData->isHotStreak = ($playerLeagueData->isHotStreak?1:0);
+                $leagueData->isVeteran = ($playerLeagueData->isVeteran?1:0);
+                $leagueData->isFreshBlood = ($playerLeagueData->isFreshBlood?1:0);
+                $leagueData->isInactive = ($playerLeagueData->isInactive?1:0);
+                $this->saveLeagueData($leagueData, $region, $sid);
+                return $leagueData;
             } else {
                 return false;
             }
@@ -107,24 +107,24 @@ class Summoner_model extends CI_Model {
         return $return;
     }
 
-    public function saveLeagueData($league_data, $region, $sid) {
+    public function saveLeagueData($leagueData, $region, $sid) {
         $query = $this->db->query('SELECT * FROM `league_data` WHERE `sid` = ' . $sid .' AND `region`="'.$region.'"');
         if($query->num_rows()) {
             $query = 'UPDATE `league_data` SET
-                `tier` = "' . $league_data->tier . '",
-                `rank` = "' . $league_data->rank . '",
-                `leaguePoints` = ' . $league_data->leaguePoints . ',
-                `wins` = ' . $league_data->wins . ',
-                `isHotStreak` = ' . $league_data->isHotStreak . ',
-                `isVeteran` = ' . $league_data->isVeteran . ',
-                `isFreshBlood` = ' . $league_data->isFreshBlood . ',
-                `isInactive` = ' . $league_data->isInactive . '
+                `tier` = "' . $leagueData->tier . '",
+                `rank` = "' . $leagueData->rank . '",
+                `leaguePoints` = ' . $leagueData->leaguePoints . ',
+                `wins` = ' . $leagueData->wins . ',
+                `isHotStreak` = ' . $leagueData->isHotStreak . ',
+                `isVeteran` = ' . $leagueData->isVeteran . ',
+                `isFreshBlood` = ' . $leagueData->isFreshBlood . ',
+                `isInactive` = ' . $leagueData->isInactive . '
             where `sid` = ' . $sid . ' AND `region` = "' . $region . '"';
         } else {
             $fields = '`sid`, `region`, `tier`, `rank`, `leaguePoints`, `wins`, `isHotStreak`, `isVeteran`, `isFreshBlood`, `isInactive`';
-            $values = $sid.', "'.$region.'", "'.$league_data->tier.'", '.'"'.$league_data->rank.'", '.$league_data->leaguePoints.', '.
-                $league_data->wins.', '.$league_data->isHotStreak.', '.$league_data->isVeteran.', '.
-                $league_data->isFreshBlood.', '.$league_data->isInactive;
+            $values = $sid.', "'.$region.'", "'.$leagueData->tier.'", '.'"'.$leagueData->rank.'", '.$leagueData->leaguePoints.', '.
+                $leagueData->wins.', '.$leagueData->isHotStreak.', '.$leagueData->isVeteran.', '.
+                $leagueData->isFreshBlood.', '.$leagueData->isInactive;
             $query = 'INSERT INTO `league_data`  (' . $fields . ') VALUES (' . $values . ')';
         }
         $this->db->query($query);

@@ -16,14 +16,14 @@ class Lolservice {
      * @param string $category <p>
      * General category of request. Possible values: 'champion', 'game', 'league', 'stats'.
      * </p>
-     * @param bool $is_static [optional] <p>
+     * @param bool $isStatic [optional] <p>
      * Is data static or not. Possible values true, false
      * </p>
      * @param string $filter [optional] <p>
      * Filter results presented in this format: [Filter_name]/[Filter_value]. <br />
      * Example: 'by-summoner/28309376'
      * </p>
-     * @param string $additional_filter [optional] <p>
+     * @param string $additionalFilter [optional] <p>
      * Additional filter for request.
      * Possible values: 'recent', 'summary', 'ranked'
      * @param string $queryParam [optional] <p>
@@ -33,12 +33,12 @@ class Lolservice {
      * Response encoded in <i>json</i>
      * </p>
      */
-    public function sendRequest($region, $apiVersion = 'v1.1', $category, $is_static = false, $filter = '', $additional_filter = '', $queryParam='') {
+    public function sendRequest($region, $apiVersion = 'v1.1', $category, $isStatic = false, $filter = '', $additionalFilter = '', $queryParam='') {
 
         $apiUrl = str_replace('prod', $region, $this->apiUrl);
 
         $requestQuery = implode('/', array(
-            $apiUrl.($is_static?'static-data/':'').$region,
+            $apiUrl . ($isStatic ? 'static-data/' : '') . $region,
             $apiVersion,
             $category
         ));
@@ -46,12 +46,12 @@ class Lolservice {
         if($filter) {
             $requestQuery .= '/'.$filter;
         }
-        if($additional_filter) {
-            $requestQuery .= '/'.$additional_filter;
+        if($additionalFilter) {
+            $requestQuery .= '/'.$additionalFilter;
         }
-        $requestQuery .= '?api_key='.$this->apiKey;
+        $requestQuery .= '?api_key=' . $this->apiKey;
         if($queryParam) {
-            $requestQuery .= '&'.$queryParam;
+            $requestQuery .= '&' . $queryParam;
         }
 
         $response = file_get_contents($requestQuery);
@@ -72,8 +72,8 @@ class Lolservice {
      * Array list of the champions
      * </p>
      */
-    public function getChampions($region = 'na', $dataType='info') {
-        $queryParam = 'locale=en_US&champData='.$dataType;
+    public function getChampions($region = 'na', $dataType = 'info') {
+        $queryParam = 'locale=en_US&champData=' . $dataType;
         $response = $this->sendRequest($region, 'v1.2', 'champion', true, '', '', $queryParam);
 
         return $response->data;
@@ -179,7 +179,7 @@ class Lolservice {
      * League data
      * </p>
      */
-    public function get_summoner_masteries($region, $summonerId) {
+    public function getSummonerMasteries($region, $summonerId) {
         $response = $this->sendRequest($region, 'v1.4', 'summoner', false, $summonerId, 'masteries');
         return $response->$summonerId->pages;
     }
@@ -196,7 +196,7 @@ class Lolservice {
      * League data
      * </p>
      */
-    public function get_summoner_runes($region, $summonerId) {
+    public function getSummonerRunes($region, $summonerId) {
         $response = $this->sendRequest($region, 'v1.4', 'summoner', false, $summonerId, 'runes');
         return $response->pages;
     }
@@ -206,16 +206,16 @@ class Lolservice {
      * @param string $region<p>
      * LoL Region. Possible values are: 'na', 'euw', 'eune'.
      * </p>
-     * @param string $summoner_name <p>
+     * @param string $summonerName <p>
      * summoner name
      * </p>
      * @return int <p>
      * Summoner id
      * </p>
      */
-    public function get_summoner_id($region, $summoner_name) {
-        $summoner_name = rawurlencode($summoner_name);
-        $response = $this->sendRequest($region, 'v1.2', 'summoner', false, 'by-name/'.$summoner_name);
+    public function getSummonerId($region, $summonerName) {
+        $summonerName = rawurlencode($summonerName);
+        $response = $this->sendRequest($region, 'v1.2', 'summoner', false, 'by-name/'.$summonerName);
         return $response->id;
     }
 
@@ -224,16 +224,16 @@ class Lolservice {
      * @param string $region<p>
      * LoL Region. Possible values are: 'na', 'euw', 'eune'.
      * </p>
-     * @param string $summoner_name <p>
+     * @param string $summonerName <p>
      * summoner name
      * </p>
      * @return Object <p>
      * StdObject containing profile data
      * </p>
      */
-    public function getSummonerByName($region, $summoner_name) {
-        $summoner_name = rawurlencode($summoner_name);
-        $response = $this->sendRequest($region, 'v1.4', 'summoner', false, 'by-name/'.$summoner_name);
+    public function getSummonerByName($region, $summonerName) {
+        $summonerName = rawurlencode($summonerName);
+        $response = $this->sendRequest($region, 'v1.4', 'summoner', false, 'by-name/'.$summonerName);
         return $response;
     }
 

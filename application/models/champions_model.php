@@ -31,11 +31,11 @@ class Champions_model extends CI_Model {
     public function updateFreeToPlay($region) {
         $this->db->update('champions', array('freeToPlay' => 0));
         $championsData = $this->lolservice->getFreeChampions($region);
-        $free_champion_ids = array();
+        $freeChampionIds = array();
         foreach($championsData as $champion) {
-            $free_champion_ids[] = $champion->id;
+            $freeChampionIds[] = $champion->id;
         }
-        $this->db->query('update `champions` ch set `freeToPlay`=1 where ch.`chid` in ('.implode(',', $free_champion_ids).')');
+        $this->db->query('update `champions` ch set `freeToPlay`=1 where ch.`chid` in (' . implode(',', $freeChampionIds) . ')');
 
         return 1;
     }
@@ -43,8 +43,8 @@ class Champions_model extends CI_Model {
     public function getChampions($freeToPlay = false) {
 
         $query = 'SELECT * FROM champions' . (($freeToPlay) ? ' WHERE `freeToPlay` = 1' : ' ORDER BY `name`');
-        $champs_query = $this->db->query($query);
-        foreach($champs_query->result() as $row) {
+        $champsQuery = $this->db->query($query);
+        foreach($champsQuery->result() as $row) {
             $championsData[$row->chid] = $row;
         }
         return (!empty($championsData)) ? $championsData : array();

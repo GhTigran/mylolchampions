@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <? if(!empty($owns_summoner)): ?>
+        <? if(!empty($ownsSummoner)): ?>
         <div class="form-group pull-right">
             <button id="add-group-button" class="btn btn-primary"> Add champion group </button>
         </div>
@@ -58,7 +58,7 @@
                             <?= $championGroup->title ?>
                         </a>
                     </h4>
-                    <? if(!empty($owns_summoner)): ?>
+                    <? if(!empty($ownsSummoner)): ?>
                         <div class="pull-right btn-group btn-group-sm">
                             <button class="btn btn-default edit-group-button" title="Edit group">
                                 <span class="glyphicon glyphicon-cog"></span>
@@ -122,9 +122,9 @@
                                             <?= $losses ?>
                                         </td>
 
-                                        <? $win_per = !empty($rankedStats[$champId]->win_per)?round($rankedStats[$champId]->win_per, 1) : '-' ?>
-                                        <td class="text-primary" data-sort="<?= $win_per ?>">
-                                            <?= ($win_per !== '-')?$win_per.'%':$win_per?>
+                                        <? $winPer = !empty($rankedStats[$champId]->win_per)?round($rankedStats[$champId]->win_per, 1) : '-' ?>
+                                        <td class="text-primary" data-sort="<?= $winPer ?>">
+                                            <?= ($winPer !== '-') ? $winPer . '%' : $winPer?>
                                         </td>
 
                                         <? $kills = !empty($rankedStats[$champId]->games)?round($rankedStats[$champId]->kills / $rankedStats[$champId]->games, 1) : '-' ?>

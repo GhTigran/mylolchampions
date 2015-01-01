@@ -1,8 +1,8 @@
-<? if(!empty($basic_info)): ?>
-    <input type="hidden" name="group-champs-<?= $basic_info->cgid ?>" class="group-champs" value="<?= $basic_info->champions ?>" />
-    <input type="hidden" name="group-name-<?= $basic_info->cgid ?>" class="group-name" value="<?= $basic_info->title ?>" />
-    <input type="hidden" name="group-id-<?= $basic_info->cgid ?>" class="group-id" value="<?= $basic_info->cgid ?>" />
-    <input type="hidden" name="group-access-<?= $basic_info->cgid ?>" class="group-access" value="<?= $basic_info->access ?>" />
+<? if(!empty($basicInfo)): ?>
+    <input type="hidden" name="group-champs-<?= $basicInfo->cgid ?>" class="group-champs" value="<?= $basicInfo->champions ?>" />
+    <input type="hidden" name="group-name-<?= $basicInfo->cgid ?>" class="group-name" value="<?= $basicInfo->title ?>" />
+    <input type="hidden" name="group-id-<?= $basicInfo->cgid ?>" class="group-id" value="<?= $basicInfo->cgid ?>" />
+    <input type="hidden" name="group-access-<?= $basicInfo->cgid ?>" class="group-access" value="<?= $basicInfo->access ?>" />
 <? endif ?>
 <? if(!empty($champions)) : ?>
     <table class="tablesorter champions-list">
@@ -42,9 +42,9 @@
                     <?= $losses ?>
                 </td>
 
-                <? $win_per = !empty($champion->win_per)?round($champion->win_per, 1) : '-' ?>
-                <td class="text-primary" data-sort="<?= $win_per ?>">
-                    <?= ($win_per == '-' ? $win_per : $win_per.'%') ?>
+                <? $winPer = !empty($champion->win_per)?round($champion->win_per, 1) : '-' ?>
+                <td class="text-primary" data-sort="<?= $winPer ?>">
+                    <?= ($winPer == '-' ? $winPer : $winPer.'%') ?>
                 </td>
 
                 <? $kills = !empty($champion->games)?round($champion->kills / $champion->games, 1) : '-' ?>

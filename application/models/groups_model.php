@@ -8,16 +8,16 @@ class Groups_model extends CI_Model {
         $where = array();
 
         if(!empty($data['champ_name'])) {
-            $where[] = 'ch.name LIKE "%'.$this->db->escape_like_str($data['champ_name']).'%"';
+            $where[] = 'ch.name LIKE "%' . $this->db->escape_like_str($data['champ_name']) . '%"';
         }
 
         if(!empty($data['champ_role'])) {
             $joins[] = 'LEFT JOIN `champion_roles` cr ON cr.`chid` = ch.`chid`';
-            $where[] = 'cr.role = "'.$this->db->escape_str($data['champ_role']).'"';
+            $where[] = 'cr.role = "' . $this->db->escape_str($data['champ_role']) . '"';
         }
 
         if(!empty($data['champ_group'])) {
-            $where[] = 'FIND_IN_SET(ch.chid, (SELECT `champions` FROM `champion_groups` WHERE `cgid` = '.(int)$data['champ_group'].'))';
+            $where[] = 'FIND_IN_SET(ch.chid, (SELECT `champions` FROM `champion_groups` WHERE `cgid` = ' . (int)$data['champ_group'] . '))';
         }
 
         /*

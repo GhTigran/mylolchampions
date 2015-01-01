@@ -11,7 +11,7 @@ class MY_Controller extends CI_Controller {
             ));
             if($user !== false) {
                 $data = array(
-                    'logged_in' => 1,
+                    'loggedIn' => 1,
                     'uid' => $user->uid,
                     'username' => $user->username
                 );

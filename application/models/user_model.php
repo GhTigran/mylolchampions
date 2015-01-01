@@ -48,7 +48,7 @@ class User_model extends CI_Model {
         }
     }
 
-    public function addUser_summoner($data) {
+    public function addUserSummoner($data) {
         $this->db->insert('user_summoners', $data);
         return $this->db->insert_id();
     }
@@ -84,12 +84,12 @@ class User_model extends CI_Model {
         $query = $this->db->get_where('user_summoners', array('active' => 0), $limit, $offset);
         $result = $query->result();
 
-        $mail_config = array(
+        $mailConfig = array(
             'mailtype' => 'html'
         );
 
         foreach($result as $row) {
-            echo 'Verifying uid: '.$row->uid.', sid: '.$row->sid.', region: '.$row->region.', code:'.$row->verification_key;
+            echo 'Verifying uid: ' . $row->uid . ', sid: ' . $row->sid . ', region: ' . $row->region . ', code:' . $row->verification_key;
             set_time_limit(300);
             $masteries = $this->lolservice->get_summoner_masteries($row->region, $row->sid);
             $user = $this->getUser(array('id' => $row->uid));
@@ -120,7 +120,7 @@ EOT;
                     $verificationSuccessful = 1;
                     echo ' <b>succeed</b><br />';
                     $this->activateUserSummoner($row->uid, $row->sid, $row->region);
-                    $this->email->initialize($mail_config);
+                    $this->email->initialize($mailConfig);
 
                     $this->email->from('support@mylolchampions.com', 'MyLoLChampions.com');
                     $this->email->bcc('info@mylolchampions.com');

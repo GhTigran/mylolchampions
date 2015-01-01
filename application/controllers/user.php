@@ -271,11 +271,11 @@ EOT;
         $code = $this->input->post('code', true);
         $sid = $this->input->post('sid', true);
         $region = $this->input->post('region', true);
-        $masteries = $this->lolservice->get_summoner_masteries($region, $sid);
+        $masteries = $this->lolservice->getSummonerMasteries($region, $sid);
         foreach($masteries as $mastery) {
             if($mastery->name == $code) {
                 $this->load->model('User_model');
-                $this->User_model->activate_user_summoner($this->session->userdata('uid'), $sid, $region);
+                $this->User_model->activateUserSummoner($this->session->userdata('uid'), $sid, $region);
                 echo 1; exit();
             }
         }
@@ -300,7 +300,7 @@ EOT;
 
     public function bulk_verify_summoner() {
         $this->load->model('User_model');
-        $user_summoners = $this->User_model->bulkVerifySummoners();
-	echo 'Done';
+        $userSummoners = $this->User_model->bulkVerifySummoners();
+	    echo 'Done';
     }
 }
