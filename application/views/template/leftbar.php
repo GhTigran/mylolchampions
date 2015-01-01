@@ -30,7 +30,7 @@
                             <select id="search-champ-group" name="champ_group" class="form-control">
                                 <option value="0"> All </option>
                                 <? foreach($championGroups as $group): ?>
-                                    <option value="<?= $group->cgId ?>"> <?= $group->title ?> </option>
+                                    <option value="<?= $group->cgid ?>"> <?= $group->title ?> </option>
                                 <? endforeach ?>
                             </select>
                         </div>
