@@ -64,7 +64,7 @@ class Groups_model extends CI_Model {
         $where = (count($where)?'WHERE '.implode(' AND ', $where):'');
         $query = 'SELECT ' . $select . ' FROM `champions` ch ' . $joins . $where . $order . $limit;
 	
-	$this->db->query('SET SQL_BIG_SELECTS=1');
+	    $this->db->query('SET SQL_BIG_SELECTS=1');
 	
         $query = $this->db->query($query);
         if($query->num_rows()) {

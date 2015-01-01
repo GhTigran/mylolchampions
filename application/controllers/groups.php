@@ -8,7 +8,7 @@ class Groups extends MY_Controller {
     }
 
     public function Search() {
-        $data = [
+        $data = array(
             'champ_name' => $this->input->get('champ_name', true),
             'champ_group' => $this->input->get('champ_group', true),
             'champ_role' => $this->input->get('champ_role', true),
@@ -17,7 +17,7 @@ class Groups extends MY_Controller {
             'sid' => $this->input->get('sid', true),
             'region' => $this->input->get('region', true),
             'limit' => $this->input->get('champ_limit', true)
-        ];
+        );
 
         $pageData['group_code'] = 'search';
         $pageData['champions'] = $this->Groups_model->getChampions($data);
@@ -48,13 +48,13 @@ class Groups extends MY_Controller {
             $championIds = '';
         }
 
-        $data = [
+        $data = array(
             'cgid' => $this->input->post('group_id'),
             'uid' => $this->session->userdata('uid'),
             'title' => $this->input->post('group_name', true),
             'champions' => $championIds,
             'access' => $this->input->post('group_access', true)
-        ];
+        );
 
         if(empty($data['group_id'])) {
             $alerts[] = array(
